@@ -18,11 +18,11 @@ def check_bst_in_order(root):
 def check_bst_recursive(node, left, right):
     if node is None:
         return True
-    # print left, node.data, right
-    if left < node.data and node.data > right:
+    print left, node.data, right
+    if left >= node.data or node.data >= right:
         return False
     return check_bst_recursive(node.left, left, node.data) and check_bst_recursive(node.right, node.data, right)
 
 
 print check_bst_in_order(root)
-print check_bst_recursive(root, (-sys.maxint-1), sys.maxint)
+print check_bst_recursive(root, (-sys.maxsize-1), sys.maxsize)
