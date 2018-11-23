@@ -1,4 +1,5 @@
-from tree_data import bst_root as root
+from tree_data import root
+from tree_data import Node
 import sys
 
 
@@ -24,5 +25,33 @@ def check_bst_recursive(node, left, right):
     return check_bst_recursive(node.left, left, node.data) and check_bst_recursive(node.right, node.data, right)
 
 
-print check_bst_in_order(root)
-print check_bst_recursive(root, (-sys.maxsize-1), sys.maxsize)
+def display_inorder_recursive(root):
+    if root is not None:
+        display_inorder_recursive(root.left)
+        print root.data
+        display_inorder_recursive(root.right)
+
+
+def display_inorder_iterative(root):
+    nodes = [root]
+    temp = root
+    while nodes:
+        if temp.left is not None:
+            temp = temp.left
+            nodes.append(temp)
+            continue
+        # while temp.left is not None:
+        #     temp = temp.left
+        #     nodes.append(temp)
+        node = nodes.pop()
+        print node.data
+        if node.right is not None:
+            nodes.append(node.right)
+            temp = nodes[-1]
+
+# print check_bst_in_order(root)
+# print check_bst_recursive(root, (-sys.maxsize-1), sys.maxsize)
+# print search_key(root, 5)
+# print insert_key(root, 10)
+# display_inorder_recursive(root)
+display_inorder_iterative(root)
